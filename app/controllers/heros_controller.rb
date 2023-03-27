@@ -1,51 +1,55 @@
+# This class defines a controller for managing hero objects.
 class HerosController < ApplicationController
   before_action :set_hero, only: [:show, :update, :destroy]
 
-  # GET /heros
+  # GET /heroes - This action retrieves all heroes.
   def index
-    @heros = Hero.all
+    @heroes = Hero.all
 
-    render json: @heros, except: [:created_at, :updated_at]
+    render json: @heroes, each_serializer: HeroSerializer, status: :ok
   end
 
-  # GET /heros/1
+  # GET /heroes/1 - This action retrieves a single hero by id.
   def show
-    render json: @hero, include: :powers, except: [:created_at, :updated_at]
+    render json: @hero, serializer: HeroSerializer, status: :ok
   end
 
-  # POST /heros
+  # POST /heroes - This action creates a new hero object.
   def create
     @hero = Hero.new(hero_params)
 
     if @hero.save
-      render json: @hero, status: :created, location: @hero
+      render json: @hero, serializer: HeroSerializer, status: :created
     else
-      render json: @hero.errors, status: :unprocessable_entity
+      render json: { errors: @hero.errors }, status: :unprocessable_entity
     end
   end
 
-  # PATCH/PUT /heros/1
+  # PATCH/PUT /heroes/1 - This action updates an existing hero object by id.
   def update
     if @hero.update(hero_params)
-      render json: @hero
+      render json: @hero, serializer: HeroSerializer, status: :ok
     else
-      render json: @hero.errors, status: :unprocessable_entity
+      render json: { errors: @hero.errors }, status: :unprocessable_entity
     end
   end
 
-  # DELETE /heros/1
+  # DELETE /heroes/1 - This action deletes a hero object by id.
   def destroy
     @hero.destroy
+
+    head :no_content
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_hero
-      @hero = Hero.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def hero_params
-      params.require(:hero).permit(:name, :super_name)
-    end
+  # This is a helper method used to find a specific hero object by id.
+  def set_hero
+    @hero = Hero.find(params[:id])
+  end
+
+  # This is a helper method used to whitelist and retrieve permitted parameters for creating/updating a hero object.
+  def hero_params
+    params.require(:hero).permit(:name, :super_name)
+  end
 end
