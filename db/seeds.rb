@@ -1,19 +1,15 @@
 require 'faker'
 
-puts "🔥 Deleting existing data..."
+puts "🔥 Deleting existing data and 🔢 Resetting IDs..."
 HeroPower.delete_all
 Power.delete_all
 Hero.delete_all
-
+ActiveRecord::Base.connection.execute("TRUNCATE TABLE heros RESTART IDENTITY CASCADE")
+ActiveRecord::Base.connection.execute("TRUNCATE TABLE powers RESTART IDENTITY CASCADE")
 puts "🗑️  Deleted all existing data..."
 
+
 puts "🌱 Seeding new data..."
-# Reset primary key sequence to 1
-ActiveRecord::Base.connection.reset_pk_sequence!('heroes')
-ActiveRecord::Base.connection.reset_pk_sequence!('powers')
-ActiveRecord::Base.connection.reset_pk_sequence!('hero_powers')
-
-
 puts "🦸 Creating powers..."
 # Create powers
 powers = []
@@ -41,11 +37,6 @@ puts "✅ Created #{powers.count} powers"
 end
 puts "✅ Created #{Hero.count} heroes with powers!"
 
-puts "🔢 Resetting IDs..."
 
-# Reset ids
-ActiveRecord::Base.connection.reset_pk_sequence!('heroes')
-ActiveRecord::Base.connection.reset_pk_sequence!('powers')
-ActiveRecord::Base.connection.reset_pk_sequence!('hero_powers')
 
 puts "✅ Done!"
