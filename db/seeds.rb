@@ -23,6 +23,8 @@ end
 
   # Assign random powers to hero
   powers.sample(rand(1..3)).each do |power|
-    HeroPower.create(hero: hero, power: power)
+    hero_power = HeroPower.new(hero: hero, power: power)
+    hero_power.strength = %w[Strong Weak Average].sample
+    hero_power.save
   end
 end

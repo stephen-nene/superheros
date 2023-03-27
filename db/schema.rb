@@ -13,6 +13,7 @@
 ActiveRecord::Schema.define(version: 2023_03_27_043057) do
 
   create_table "hero_powers", force: :cascade do |t|
+    t.string "strength"
     t.integer "hero_id", null: false
     t.integer "power_id", null: false
     t.datetime "created_at", precision: 6, null: false
