@@ -16,7 +16,6 @@ class PowersController < ApplicationController
   # POST /powers
   def create
     @power = Power.new(power_params)
-
     if @power.save
       render json: @power, status: :created, location: @power
     else

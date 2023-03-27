@@ -3,14 +3,14 @@ class HerosController < ApplicationController
 
   # GET /heros
   def index
-    heros = Hero.all
+    @heros = Hero.all
 
-    render json: heros, except: [:created_at, :updated_at]
+    render json: @heros, except: [:created_at, :updated_at]
   end
 
   # GET /heros/1
   def show
-    render json: @hero.as_json
+    render json: @hero, include: :powers, except: [:created_at, :updated_at]
   end
 
   # POST /heros
