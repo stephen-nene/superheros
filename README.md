@@ -57,9 +57,9 @@
 
 - These are HTTP methods used for interacting with a hypothetical API that deals with pizza-related data. Here's a breakdown of each one:
 
-1. **` GET /heroes`**
+1. **GET /heroes**
 
-   - This route should return an array of all `heroes` in the following **JSON** format.
+   - Returns a list of all `heroes` in **JSON** format with their id, name and superhero name. The format of the **JSON** response is.
 
    ```json
    [
@@ -69,7 +69,7 @@
    ]
    ```
 
-2. **`GET /heroes/:id`**
+2. **GET /heroes/:id**
 
    - This route should return information about a specific `hero`. If the `hero` with the given ID exists, it should return **JSON** data in the following format:
 
@@ -101,18 +101,98 @@
    }
    ```
 
-3. **`POST /powers`**
+3. **GET /powers**
 
    - This route should return an array of all `powers` in the following **JSON** format.
 
      ```json
              [
-                 {    "id": 1,    "name": "super strength",    "description": "gives the wielder super-human strengths"  },  {    "id": 2,    "name": "flight",    "description": "gives the wielder the ability to fly through the skies at supersonic speed"  }]
-     [  {    "id": 1,    "name": "super strength",    "description": "gives the wielder super-human strengths"  },  {    "id": 2,    "name": "flight",    "description": "gives the wielder the ability to fly through the skies at supersonic speed"  }]
+                {    "id": 1,
+                      "name": "super strength",    "description": "gives the wielder super-human strengths"
+                },
+                {
+                     "id": 2,
+                     "name": "flight",
+                     "description": "gives the wielder the ability to fly through the skies at supersonic speed"
+                }
+             ]
 
      ```
+4. **GET /powers/:id**
+  -  If the power with the specified id exists, returns the details of the power in JSON format with their id, name and description. The format of the JSON response is
 
-4. **`DELETE /powers/:id`**
+    ```json
+            {
+                "id": 1,
+                "name": "super strength",
+                "description": "gives the wielder super-human strengths"
+            }
+    ```
+  - If the power with the specified id does not exist, returns a JSON response with an error message and the appropriate HTTP status code:
+    ```json
+            {
+                 "error": "Power not found"
+            }
+    ```
+5. **PATCH /powers/:id**
+  - Updates the description of the power with the specified id. Accepts a JSON object in the request body with the updated description in the "description" field. The format of the JSON response depends on the success of the update operation:
+      -If the power with the specified id exists and is updated successfully (passes validations), returns the updated details of the power in JSON format with their id, name and updated description. The format of the JSON response is:
+
+        ```json
+                {
+                    "id": 1,
+                    "name": "super strength update",
+                    "description":"updated description"
+                }
+        ```
+  - If the power with the specified id does not exist, returns a JSON response with an error message and the appropriate HTTP status code:
+        ```json
+                {
+                    "error":"power not found"
+                }
+        ```
+  - If the power with the specified id is not updated successfully (does not passvalidations), returns a JSON response with an error message and the appropriate HTTP status code:
+        ```json
+                {
+                    "errors":["Validation errors"]
+                }
+        ```
+6. **POST /hero_powers**
+  - Creates a new HeroPower association between an existing power and hero. Accepts a JSON object in the request body with the following properties:
+        ```json
+                {
+                    "strength":"medium",
+                    "power_id":"1",
+                    "hero_id":"2"
+                }
+        ```
+  - If the HeroPower is created successfully, returns a JSON response with the details of the hero in the format specified below :
+        ```json
+           {
+                "id": 1,
+                "name": "Kamala Khan",
+                "super_name": "Ms. Marvel",
+                "powers": [
+                    {
+                    "id": 1,
+                    "name": "super strength",
+                    "description": "gives the wielder super-human strengths"
+                    },
+                    {
+                    "id": 2,
+                    "name": "flight",
+                    "description": "gives the wielder the ability to fly through the skies at supersonic speed"
+                    }
+                ]
+            }
+        ```
+  - If the `HeroPower` is **not** created successfully, return the following JSON data, along with the appropriate HTTP status code:
+        ```json
+                "errors": ["validation errors"]
+        ```
+
+
+7. **DELETE /powers/:id`**
    - This route should return information about a specific `power`. If the `power` with the given ID exists, it should return **JSON** data in the following format.
   ```json
                {
@@ -128,37 +208,6 @@
         "error": "Power not found"
         }
  ```
-5. **PATCH /powers/:id**
-
-- This route should update an existing power. It should accept an object with the following properties in the body of the request:
-    ``` json
-        {
-            "name" : "updated name",
-            "description": "Updated description"
-        }
-    ```
-- If the power exists and is updated successfully, the route should return JSON data in the following format:
-    ```json
-            {
-                "id": 1,
-                "name": "super strength",
-                "description": "Updated description"
-            }
-
-    ```
-- If the power does not exist, the route should return the following JSON data along with an appropriate HTTP status code.
-  ```json
-        {
-            "error": "Power not found"
-        }
-  ```
-- If the power is not updated successfully, the route should return the following JSON data along with an appropriate HTTP status code
-    ```json
-            {
-                "errors": ["validation errors"]
-            }
-    ```
-6.
 
 
 
