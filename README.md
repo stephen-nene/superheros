@@ -1,6 +1,7 @@
 # Heroes Project
 
 ## Description
+  #### live link = [Superheroes](https://github.com/stephen-nene/superheros/fork)
 
 - The Heroes API is designed to manage a database of different `superheroes` and their respective `powers`. The application has three main resources - `Hero`, `Power`, and `HeroPower`. The `Hero` model represents a `superhero` that possesses one or more `powers`, while the `Power` model represents the different types of `powers` that a `superhero` can have. The `HeroPower` model acts as a join table between the `Hero` and `Power` models, allowing for the association between the two.
 
@@ -18,24 +19,8 @@
 
 # Get-started
 1. A)First **fork** this repository to your github account.
-    <a class="fork-btn" href="https://github.com/stephen-nene/superheros/fork">fork</a>
-      <style>
-        .fork-btn {
-                display: inline-block;
-                padding: 12px 24px;
-                background-color: #000;
-                color: #fff;
-                font-size: 18px;
-                text-decoration: none;
-                border-radius: 4px;
-                transition: background-color 0.3s ease, box-shadow 0.3s ease;
-              }
 
-                .fork-btn:hover {
-                          background-color: #333;
-                          box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-                        }
-      </style>
+     [Click-Here-To-Fork](https://github.com/stephen-nene/superheros/fork)
 
 2. **Git clone** to your local machine
    ```bash
