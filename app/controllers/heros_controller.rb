@@ -4,7 +4,7 @@ class HerosController < ApplicationController
 
   # GET /heroes - This action retrieves all heroes.
   def index
-    heroes = Hero.all
+    heroes = Hero.order(id: :asc)
     render json: heroes, each_serializer: HeroSerializer, include_powers: false
   end
 

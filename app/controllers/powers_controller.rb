@@ -3,7 +3,7 @@ class PowersController < ApplicationController
 
   # GET /powers
   def index
-    @powers = Power.all
+    @powers = Power.order(id: :asc)
 
     render json: @powers, except: [:created_at, :updated_at]
   end
