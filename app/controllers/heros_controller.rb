@@ -5,12 +5,12 @@ class HerosController < ApplicationController
   def index
     @heros = Hero.all
 
-    render json: @heros
+    render json: @heros, except: [:created_at, :updated_at]
   end
 
   # GET /heros/1
   def show
-    render json: @hero
+    render json: @hero.as_json
   end
 
   # POST /heros
