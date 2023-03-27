@@ -5,12 +5,12 @@ class PowersController < ApplicationController
   def index
     @powers = Power.all
 
-    render json: @powers
+    render json: @powers, except: [:created_at, :updated_at]
   end
 
   # GET /powers/1
   def show
-    render json: @power
+    render json: @power,  except: [:created_at, :updated_at]
   end
 
   # POST /powers
