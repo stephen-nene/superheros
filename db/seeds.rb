@@ -1,10 +1,20 @@
 require 'faker'
 
-# Delete all existing data
+puts "🔥 Deleting existing data..."
 HeroPower.delete_all
 Power.delete_all
 Hero.delete_all
 
+puts "🗑️  Deleted all existing data..."
+
+puts "🌱 Seeding new data..."
+# Reset primary key sequence to 1
+ActiveRecord::Base.connection.reset_pk_sequence!('heroes')
+ActiveRecord::Base.connection.reset_pk_sequence!('powers')
+ActiveRecord::Base.connection.reset_pk_sequence!('hero_powers')
+
+
+puts "🦸 Creating powers..."
 # Create powers
 powers = []
 10.times do
@@ -13,6 +23,7 @@ powers = []
     description: Faker::ChuckNorris.fact
   )
 end
+puts "✅ Created #{powers.count} powers"
 
 # Create heroes
 30.times do
@@ -28,3 +39,13 @@ end
     hero_power.save
   end
 end
+puts "✅ Created #{Hero.count} heroes with powers!"
+
+puts "🔢 Resetting IDs..."
+
+# Reset ids
+ActiveRecord::Base.connection.reset_pk_sequence!('heroes')
+ActiveRecord::Base.connection.reset_pk_sequence!('powers')
+ActiveRecord::Base.connection.reset_pk_sequence!('hero_powers')
+
+puts "✅ Done!"
