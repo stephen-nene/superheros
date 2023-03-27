@@ -12,9 +12,12 @@
 
 ActiveRecord::Schema.define(version: 2023_03_27_071313) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "hero_powers", force: :cascade do |t|
-    t.integer "hero_id", null: false
-    t.integer "power_id", null: false
+    t.bigint "hero_id", null: false
+    t.bigint "power_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "strength"
