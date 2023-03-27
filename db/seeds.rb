@@ -13,7 +13,7 @@ puts "🌱 Seeding new data..."
 puts "🦸 Creating powers..."
 # Create powers
 powers = []
-10.times do
+30.times do
   powers << Power.create(
     name: Faker::Superhero.power,
     description: Faker::ChuckNorris.fact
@@ -22,7 +22,7 @@ end
 puts "✅ Created #{powers.count} powers"
 
 # Create heroes
-30.times do
+100.times do
   hero = Hero.create(
     name: Faker::Name.name,
     super_name: Faker::Superhero.name

@@ -36,7 +36,6 @@ class HerosController < ApplicationController
   # DELETE /heroes/1 - This action deletes a hero object by id.
   def destroy
     @hero.destroy
-
     head :no_content
   end
 
