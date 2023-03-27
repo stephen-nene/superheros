@@ -9,7 +9,7 @@ class HerosController < ApplicationController
     render json: @heroes, each_serializer: HeroSerializer, status: :ok
   end
 
-  # GET /heroes/1 - This action retrieves a single hero by id.
+  # GET /heroes/1 - This action retrieves a single hero by id with the powers associated.
   def show
     render json: @hero, serializer: HeroSerializer, status: :ok
   end
