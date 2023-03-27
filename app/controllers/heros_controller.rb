@@ -4,14 +4,13 @@ class HerosController < ApplicationController
 
   # GET /heroes - This action retrieves all heroes.
   def index
-    @heroes = Hero.all
-
-    render json: @heroes, each_serializer: HeroSerializer, status: :ok
+    heroes = Hero.all
+    render json: heroes, each_serializer: HeroSerializer, include_powers: false
   end
 
   # GET /heroes/1 - This action retrieves a single hero by id with the powers associated.
   def show
-    render json: @hero, serializer: HeroSerializer, status: :ok
+    render json: @hero, serializer: HeroSerializer, include_powers: true
   end
 
   # POST /heroes - This action creates a new hero object.
