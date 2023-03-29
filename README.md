@@ -1,7 +1,7 @@
 # Heroes Project
 
 ## Description
-  #### live link = [Superheroes](https://github.com/stephen-nene/superheros/fork)
+  #### live link = [Superheroes](https://superheros.onrender.com/heros)
 
 - The Heroes API is designed to manage a database of different `superheroes` and their respective `powers`. The application has three main resources - `Hero`, `Power`, and `HeroPower`. The `Hero` model represents a `superhero` that possesses one or more `powers`, while the `Power` model represents the different types of `powers` that a `superhero` can have. The `HeroPower` model acts as a join table between the `Hero` and `Power` models, allowing for the association between the two.
 
